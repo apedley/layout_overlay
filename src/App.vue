@@ -1,30 +1,39 @@
 <script setup lang="ts">
 import {
-  alphaLayer,
   BoardLayer,
-  navLayer,
-  numLayer,
-  symLayer,
-  funLayer,
-  winLayer,
-  uniLayer,
+  // alphaLayer,
+  // navLayer,
+  // numLayer,
+  // symLayer,
+  // funLayer,
+  // winLayer,
+  // uniLayer,
+  baseLayer,
+  lowerLayer,
+raiseLayer,
+  // raiseLayer,
+  // adjustLayer,
+  // numpadLayer,
 } from "./boardLayout";
 import LayoutLayer from "./components/LayoutLayer.vue";
 import { onMounted, onUnmounted, Ref, ref } from "vue";
 import { listen, UnlistenFn } from "@tauri-apps/api/event";
 
-let layer: Ref<BoardLayer | null> = ref(alphaLayer);
+let layer: Ref<BoardLayer | null> = ref(baseLayer);
 let layerChangeCount = ref(0);
 
 const layers = [
-  alphaLayer,
-  alphaLayer,
-  navLayer,
-  numLayer,
-  symLayer,
-  funLayer,
-  uniLayer,
-  winLayer,
+  // alphaLayer,
+  // alphaLayer,
+  // navLayer,
+  // numLayer,
+  // symLayer,
+  // funLayer,
+  // uniLayer,
+  // winLayer,
+  baseLayer,
+  lowerLayer,
+  raiseLayer,
 ];
 
 if ((window as any).__TAURI__) {

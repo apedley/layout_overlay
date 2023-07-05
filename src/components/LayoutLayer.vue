@@ -20,58 +20,60 @@ interface LayerThumb {
 const props = defineProps<LayerProps>();
 
 const columns: LayerColumn[] = [
+
   // left
   {
     keys: props.layer.left.pinkyOuter as any,
-    styleClass: "mt-[100px]",
+    styleClass: "mt-14",
   },
   {
     keys: props.layer.left.pinky as any,
-    styleClass: "mt-[55px]",
+    styleClass: "mt-12",
   },
   {
     keys: props.layer.left.ring as any,
-    styleClass: "mt-7",
+    styleClass: "mt-3",
   },
   {
     keys: props.layer.left.middle as any,
   },
   {
     keys: props.layer.left.index as any,
-    styleClass: "mt-6",
+    styleClass: "mt-3",
   },
   {
     keys: props.layer.left.indexOuter as any,
-    styleClass: "mt-8 mr-4",
+    styleClass: "mt-6 mr-6",
   },
   // right
   {
     keys: props.layer.right.indexOuter as any,
-    styleClass: "mt-8 ml-4",
+    styleClass: "mt-6 ml-6",
   },
   {
     keys: props.layer.right.index as any,
-    styleClass: "mt-6",
+    styleClass: "mt-3",
   },
   {
     keys: props.layer.right.middle as any,
   },
   {
     keys: props.layer.right.ring as any,
-    styleClass: "mt-7 rotate-10",
+    styleClass: "mt-3 rotate-10",
   },
   {
     keys: props.layer.right.pinky as any,
-    styleClass: "mt-[55px]",
+    styleClass: "mt-12",
   },
   {
     keys: props.layer.right.pinkyOuter as any,
-    styleClass: "mt-[100px]",
+    styleClass: "mt-14",
   },
 ];
 
 function isHomeRow(col: number, row: number): boolean {
   return ((col >= 1 && col <= 4) || (col >= 7 && col <= 10)) && row == 1;
+  return false;
 }
 
 const thumbShift = "-translate-y-6";
@@ -83,7 +85,7 @@ const thumbs: LayerThumb[] = [
   },
   {
     key: props.layer.left.thumb[1],
-    homeKey: true,
+    // homeKey: true,
     styleClass: "mt-[8px] ml-[6px] rotate-[12deg]",
   },
   {
@@ -93,11 +95,11 @@ const thumbs: LayerThumb[] = [
   // right
   {
     key: props.layer.right.thumb[0],
-    styleClass: "ml-[45px] mt-[27px] mr-[4px] rotate-[-24deg]",
+    styleClass: "ml-[27px] mt-[27px] mr-[4px] rotate-[-24deg]",
   },
   {
     key: props.layer.right.thumb[1],
-    homeKey: true,
+    // homeKey: true,
     styleClass: "mt-[8px] mr-[6px] rotate-[-12deg]",
   },
   {
