@@ -9,7 +9,7 @@ import {
   winLayer,
   uniLayer,
 } from "./boardLayout";
-import LayoutLayer from "./Components/LayoutLayer.vue";
+import LayoutLayer from "./components/LayoutLayer.vue";
 import { onMounted, onUnmounted, Ref, ref } from "vue";
 import { listen, UnlistenFn } from "@tauri-apps/api/event";
 

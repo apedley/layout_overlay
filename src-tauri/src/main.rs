@@ -17,7 +17,7 @@ use tauri::SystemTray;
 use tauri::SystemTrayEvent;
 use tauri::SystemTrayMenu;
 use tauri::SystemTrayMenuItem;
-use window_vibrancy::apply_blur;
+
 
 const QUIT_ID: &str = "quit";
 const TOGGLE_ID: &str = "toggle";
@@ -25,8 +25,10 @@ const LAYER_EV: &str = "layer";
 const CAPS_WORD_EV: &str = "capsword";
 const CAPS_LOCK_EV: &str = "capslock";
 const SHIFT_EV: &str = "shift";
-const HID_VENDOR_ID: u16 = 0x3a3c;
-const HID_PROD_ID: u16 = 0x0001;
+// const HID_VENDOR_ID: u16 = 0x3a3c;
+// const HID_PROD_ID: u16 = 0x0001;
+const HID_VENDOR_ID: u16 = 0xfefe;
+const HID_PROD_ID: u16 = 0xb171;
 const HID_USAGE: u16 = 0x61;
 const HID_USAGE_PAGE: u16 = 0xFF60;
 
@@ -74,7 +76,7 @@ fn main() {
             // Global shortcuts
             let app_handle = app.handle();
             app.global_shortcut_manager()
-                .register("CmdOrCtrl+F24", move || {
+                .register("CmdOrCtrl+F12", move || {
                     toggle_overlay(&app_handle.clone(), None)
                 })
                 .unwrap();
@@ -107,9 +109,9 @@ fn main() {
             // window.set_ignore_cursor_events(true);
 
             // window blur
-            #[cfg(target_os = "windows")]
-            apply_blur(&window, None)
-                .expect("Unsupported platform! 'apply_blur' is only supported on Windows");
+            // #[cfg(target_os = "windows")]
+            // apply_blur(&window, None)
+            //     .expect("Unsupported platform! 'apply_blur' is only supported on Windows");
 
             Ok(())
         })
