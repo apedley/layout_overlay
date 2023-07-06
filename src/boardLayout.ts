@@ -121,6 +121,26 @@ export const raiseLayer: BoardLayer = {
     thumb: [null, null, null],
   },
 };
+export const adjustLayer: BoardLayer = {
+  left: {
+    pinkyOuter: ["F11", null, null],
+    pinky: ["F1", "Mode+", "Mode-"],
+    ring: ["F2", "Spd+","Spd-"],
+    middle: ["F3", "Hue+","Hue-"],
+    index: ["F4", "Sat+","Sat-"],
+    indexOuter: ["F5", "Val+","Val-"],
+    thumb: [null, null, null],
+  },
+  right: {
+    indexOuter: ["F6", "Accel", null],
+    index: ["F7", "🚫Mem", null],
+    middle: ["F8", null, null],
+    ring: ["F9", null, null],
+    pinky: ["F10", null, null],
+    pinkyOuter: ["F12", null, null],
+    thumb: [null, null, null],
+  },
+};
 // export const alphaLayer: BoardLayer = {
 //   left: {
 //     pinkyOuter: ["Z"],

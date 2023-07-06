@@ -24,6 +24,7 @@ const TOGGLE_ID: &str = "toggle";
 const LAYER_EV: &str = "layer";
 const CAPS_WORD_EV: &str = "capsword";
 const CAPS_LOCK_EV: &str = "capslock";
+const KEYMAP_EV: &str = "keymap";
 const SHIFT_EV: &str = "shift";
 // const HID_VENDOR_ID: u16 = 0x3a3c;
 // const HID_PROD_ID: u16 = 0x0001;
@@ -39,6 +40,7 @@ enum BoardEvent {
     CapsWord(bool),
     CapsLock(bool),
     Shift(bool),
+    Keymap(u8)
 }
 
 fn main() {
@@ -71,7 +73,7 @@ fn main() {
             _ => {}
         })
         .setup(|app| {
-            let window = app.get_window("main").unwrap();
+            let _window = app.get_window("main").unwrap();
 
             // Global shortcuts
             let app_handle = app.handle();
@@ -101,6 +103,9 @@ fn main() {
                     BoardEvent::Shift(active) => {
                         app_handle.emit_all(SHIFT_EV, active).unwrap();
                     }
+                    BoardEvent::Keymap(active) => {
+                        app_handle.emit_all(KEYMAP_EV, active).unwrap();
+                    }
                 };
             });
 
@@ -123,7 +128,7 @@ fn toggle_overlay(app_handle: &AppHandle, show: Option<bool>) {
     let window = app_handle.get_window("main").unwrap();
     let menu_item = app_handle.tray_handle().get_item(TOGGLE_ID);
 
-    let show = show.unwrap_or(!window.is_visible().unwrap());
+    let show: bool = show.unwrap_or(!window.is_visible().unwrap());
 
     if show {
         window.show().unwrap();
@@ -171,12 +176,13 @@ fn run_hid_loop(sender: Sender<BoardEvent>) {
                 Ok(_) => {
                     println!("{:?}", buff);
                     let ev_type = buff[0];
-                    let ev_val = buff[1];
+                    let ev_val: u8 = buff[1];
                     match ev_type {
                         1 => sender.send(BoardEvent::Layer(ev_val)).unwrap(),
-                        2 => sender.send(BoardEvent::CapsWord(ev_val != 0)).unwrap(),
-                        3 => sender.send(BoardEvent::CapsLock(ev_val != 0)).unwrap(),
-                        4 => sender.send(BoardEvent::Shift(ev_val != 0)).unwrap(),
+                        2 => sender.send(BoardEvent::Keymap(ev_val)).unwrap(),
+                        3 => sender.send(BoardEvent::CapsWord(ev_val != 0)).unwrap(),
+                        4 => sender.send(BoardEvent::CapsLock(ev_val != 0)).unwrap(),
+                        5 => sender.send(BoardEvent::Shift(ev_val != 0)).unwrap(),
                         _ => unimplemented!("Board event '{}' not implemended", ev_type),
                     };
                 }

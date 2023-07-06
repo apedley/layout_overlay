@@ -10,9 +10,8 @@ import {
   // uniLayer,
   baseLayer,
   lowerLayer,
-raiseLayer,
-  // raiseLayer,
-  // adjustLayer,
+  raiseLayer,
+  adjustLayer,
   // numpadLayer,
 } from "./boardLayout";
 import LayoutLayer from "./components/LayoutLayer.vue";
@@ -34,6 +33,7 @@ const layers = [
   baseLayer,
   lowerLayer,
   raiseLayer,
+  adjustLayer,
 ];
 
 if ((window as any).__TAURI__) {
