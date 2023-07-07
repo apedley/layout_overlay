@@ -17,6 +17,16 @@ interface LayerThumb {
   styleClass?: string;
 }
 
+interface LayerKnob {
+  key: KeyLabel;
+  styleClass?: string;
+}
+
+interface LayerSideSwitch {
+  key: KeyLabel;
+  styleClass?: string;
+}
+
 const props = defineProps<LayerProps>();
 
 const columns: LayerColumn[] = [
@@ -43,12 +53,12 @@ const columns: LayerColumn[] = [
   },
   {
     keys: props.layer.left.indexOuter as any,
-    styleClass: "mt-6 mr-6",
+    styleClass: "mt-6 mr-8",
   },
   // right
   {
     keys: props.layer.right.indexOuter as any,
-    styleClass: "mt-6 ml-6",
+    styleClass: "mt-6 ml-8",
   },
   {
     keys: props.layer.right.index as any,
@@ -76,26 +86,29 @@ function isHomeRow(col: number, row: number): boolean {
   return false;
 }
 
-const thumbShift = "-translate-y-6";
 const thumbs: LayerThumb[] = [
   // left
   {
     key: props.layer.left.thumb[0],
-    styleClass: "transform ml-[185px]",
+    styleClass: "transform ml-[105px] mt-[20px]",
   },
   {
     key: props.layer.left.thumb[1],
+    styleClass: "transform ml-[20px]",
+  },
+  {
+    key: props.layer.left.thumb[2],
     // homeKey: true,
     styleClass: "mt-[8px] ml-[6px] rotate-[12deg]",
   },
   {
-    key: props.layer.left.thumb[2],
+    key: props.layer.left.thumb[3],
     styleClass: "mt-[27px] ml-[4px] rotate-[24deg]",
   },
   // right
   {
     key: props.layer.right.thumb[0],
-    styleClass: "ml-[27px] mt-[27px] mr-[4px] rotate-[-24deg]",
+    styleClass: "ml-[20px] mt-[27px] mr-[4px] rotate-[-24deg]",
   },
   {
     key: props.layer.right.thumb[1],
@@ -105,7 +118,44 @@ const thumbs: LayerThumb[] = [
   {
     key: props.layer.right.thumb[2],
   },
+  {
+    key: props.layer.right.thumb[3],
+    styleClass: "mt-[20px] ml-[20px]",
+  },
 ];
+const thumbShift = "-translate-y-6";
+
+const sideSwitches: LayerSideSwitch[] = [
+  {
+    key: props.layer.left.sideSwitch[0],
+    // styleClass: "mt-[-20px] ml-[15px]",
+    styleClass: "transform ml-[150px]",
+  },
+  {
+    key: props.layer.left.sideSwitch[1],
+    // styleClass: "mt-[-20px] ml-[15px]",
+  },
+  {
+    key: props.layer.left.sideSwitch[2],
+    // styleClass: "mt-[-20px] ml-[15px]",
+  },
+  {
+    key: props.layer.right.sideSwitch[0],
+    styleClass: "ml-[80px]",
+    // styleClass: "mt-[-20px] ml-[15px]",
+  },
+  {
+    key: props.layer.right.sideSwitch[1],
+    // styleClass: "mt-[-20px] ml-[15px]",
+  },
+  {
+    key: props.layer.right.sideSwitch[2],
+    // styleClass: "mt-[-20px] ml-[15px]",
+  },
+];
+
+const sideSwitchShift = "-translate-y-3";
+
 </script>
 
 <template>
@@ -134,6 +184,16 @@ const thumbs: LayerThumb[] = [
         :class="`flex flex-col ${t.styleClass} ${thumbShift}`"
       />
     </div>
+
+    <div class="flex flex-row sideSwitches">
+      <LayoutKey
+        v-for="(s, i) in sideSwitches"
+        :key="i"
+        :height=35
+        :label="s.key"
+        :class="`flex flex-col ${s.styleClass} ${sideSwitchShift}`"
+      />
+    </div>    
   </div>
 </template>
 
@@ -141,4 +201,5 @@ const thumbs: LayerThumb[] = [
 .thumbs {
   height: 75px;
 }
+
 </style>

@@ -70,9 +70,9 @@ if ((window as any).__TAURI__) {
   height: 100%;
   flex-grow: 1;
   align-self: stretch;
-  background-color: rgba(73, 73, 73, 0.25);
-  border: 5px solid rgba(43, 43, 43, 0.3);
-  padding: 10px 5px 0 5px;
+  // background-color: rgba(73, 73, 73, 0.25);
+  // border: 5px solid rgba(43, 43, 43, 0.3);
+  padding: 10px;
   border-radius: 3px;
   user-select: none;
 }

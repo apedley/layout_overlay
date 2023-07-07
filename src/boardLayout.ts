@@ -20,7 +20,8 @@ export interface BoardHalf {
   middle: FixedArray<KeyLabel, 3>;
   index: FixedArray<KeyLabel, 3>;
   indexOuter: FixedArray<KeyLabel, 3>;
-  thumb: FixedArray<KeyLabel, 3>;
+  thumb: FixedArray<KeyLabel, 4>;
+  sideSwitch: FixedArray<KeyLabel, 3>;
 }
 
 // export interface BoardHalf {
@@ -40,10 +41,10 @@ export interface BoardLayer {
 
 export enum Layer {
   base = "BASE",
-  lower = "LOWER",
-  raise = "RAISE",
-  adjust = "ADJUST",
-  numpad = "NUMPAD",
+  lower = "🠇",
+  raise = "🠅",
+  adjust = "ADJ",
+  numpad = "NUM",
   // alpha = "ALPHA",
   // nav = "NAV",
   // num = "NUM",
@@ -61,23 +62,61 @@ export const baseLayer: BoardLayer = {
     index: ["R", ["F", "Ctrl"], "V"],
     indexOuter: ["T", "G", "B"],
     thumb: [
-      [Layer.lower],
-      ["Ctrl"],
-      ["Space"],
+      ["Mute", "Vol"],
+      Layer.lower,
+      "Ctrl",
+      "Space",
     ],
+    sideSwitch: ["DPI-", "Scroll", "DPI+"]
   },
+  
+    //         {
+    //           label: ",",
+    //           style: {
+    //             fontSize: "2em",
+    //             transform: "translateY(-10px)",
+    //           },
+    //         },
+    //         "CTRL",
+    //       ],
   right: {
     indexOuter: ["Y", "H", "N"],
     index: ["U", ["J", "Ctrl"], "M"],
-    ring: ["I", ["K", "Shift"], ","],
-    middle: ["O", ["L", "Alt"], "."],
-    pinky: ["P", [";", "Gui"], "/"],
-    pinkyOuter: ["Bksp", "'", "Ctrl"],
-    thumb: [
-      ["Enter"],
-      ["Alt"],
-      [Layer.raise],
+    ring: ["I", ["K", "Shift"],
+      {
+        label: ",",
+        style: {
+          fontSize: "2em",
+          transform: "translateY(-10px)",
+        },
+      }, 
     ],
+    middle: ["O", ["L", "Alt"],
+      {
+        label: ".",
+        style: {
+          fontSize: "2em",
+          transform: "translateY(-10px)",
+        },
+      }, 
+    ],
+    pinky: ["P", [";", "Gui"], "/"],
+    pinkyOuter: ["Bksp", 
+    {
+      label: "'",
+      style: {
+        fontSize: "2em",
+        transform: "translateY(10px)",
+      },
+    }, 
+    "Ctrl"],
+    thumb: [
+      "Enter",
+      "Alt",
+      Layer.raise,
+      ["Mute", "Alt Tab"],
+    ],
+    sideSwitch: ["DPI-", "Point", "DPI+"]
   },
 };
 
@@ -89,7 +128,9 @@ export const lowerLayer: BoardLayer = {
     middle: ["#", " UP ", null],
     index: ["$", "RIGHT", null],
     indexOuter: ["%", "Updir", null],
-    thumb: [null, null, null],
+    thumb: [null, null, null, null],
+
+    sideSwitch: ["Mode-", "RGB", "Mode+"]
   },
   right: {
     indexOuter: ["^", null, null],
@@ -98,7 +139,9 @@ export const lowerLayer: BoardLayer = {
     ring: ["(", "[", null],
     pinky: [")", "]", "\\"],
     pinkyOuter: ["-", "=", null],
-    thumb: [null, null, null],
+    thumb: [null, null, null, null],
+
+    sideSwitch: ["Mode-", "RGB", "Mode+"]
   },
 };
 export const raiseLayer: BoardLayer = {
@@ -109,7 +152,9 @@ export const raiseLayer: BoardLayer = {
     middle: ["3", null, "+"],
     index: ["4", null, "{"],
     indexOuter: ["5", null, "}"],
-    thumb: [null, null, null],
+    thumb: [null, null, null, null],
+
+    sideSwitch: ["Mo1", "Mo3", "Mo2"]
   },
   right: {
     indexOuter: ["6", null, null],
@@ -118,18 +163,22 @@ export const raiseLayer: BoardLayer = {
     ring: ["9", "(", "|"],
     pinky: ["0", ")", "\""],
     pinkyOuter: ["Del", "=", "Shh"],
-    thumb: [null, null, null],
+    thumb: [null, null, null, null],
+
+    sideSwitch: ["Mo1", "Mo3", "Mo2"]
   },
 };
 export const adjustLayer: BoardLayer = {
   left: {
     pinkyOuter: ["F11", null, null],
     pinky: ["F1", "Mode+", "Mode-"],
-    ring: ["F2", "Spd+","Spd-"],
-    middle: ["F3", "Hue+","Hue-"],
-    index: ["F4", "Sat+","Sat-"],
-    indexOuter: ["F5", "Val+","Val-"],
-    thumb: [null, null, null],
+    ring: ["F2", "Spd+", "Spd-"],
+    middle: ["F3", "Hue+", "Hue-"],
+    index: ["F4", "Sat+", "Sat-"],
+    indexOuter: ["F5", "Val+", "Val-"],
+    thumb: [null, null, null, null],
+
+    sideSwitch: ["Mo1", "Mo3", "Mo2"]
   },
   right: {
     indexOuter: ["F6", "Accel", null],
@@ -138,7 +187,9 @@ export const adjustLayer: BoardLayer = {
     ring: ["F9", null, null],
     pinky: ["F10", null, null],
     pinkyOuter: ["F12", null, null],
-    thumb: [null, null, null],
+    thumb: [null, null, null, null],
+
+    sideSwitch: ["Mo1", "Mo3", "Mo2"]
   },
 };
 // export const alphaLayer: BoardLayer = {
@@ -162,7 +213,7 @@ export const adjustLayer: BoardLayer = {
 //     middle: ["F", "S", ["(", "SHFT"]],
 //     index: ["P", "T", "V"],
 //     indexOuter: ["G", "D"],
-//     thumb: [
+//     thumb: [null, 
 //       ["ESC", Layer.win],
 //       [
 //         {
@@ -197,7 +248,7 @@ export const adjustLayer: BoardLayer = {
 //     ],
 //     pinky: ["B", "O", ["?", "ALT"]],
 //     pinkyOuter: ["K"],
-//     thumb: [
+//     thumb: [null, 
 //       ["ENTER", Layer.fun],
 //       ["⇽", Layer.num],
 //       ["⇽WRD", Layer.sym],
@@ -214,7 +265,7 @@ export const adjustLayer: BoardLayer = {
 //     middle: [null, "COPY", "SHFT"],
 //     index: [null, "PASTE", "WIN"],
 //     indexOuter: [null, "REDO"],
-//     thumb: [null, null, null],
+//     thumb: [null, null, null, null],
 //   },
 //   right: {
 //     indexOuter: ["☰", "🔍"],
@@ -223,7 +274,7 @@ export const adjustLayer: BoardLayer = {
 //     ring: ["Pg↑", "▲", null],
 //     pinky: ["END", "⯈", "CAPS LOCK"],
 //     pinkyOuter: ["CAPS WRD"],
-//     thumb: ["S(ENTER)", "⇾", "⇾ WRD"],
+//     thumb: [null, "S(ENTER)", "⇾", "⇾ WRD"],
 //   },
 // };
 
@@ -235,7 +286,7 @@ export const adjustLayer: BoardLayer = {
 //     middle: [null, "", ""],
 //     index: [null, "", ""],
 //     indexOuter: [null, "🖮"],
-//     thumb: [null, null, null],
+//     thumb: [null, null, null, null],
 //   },
 //   right: {
 //     indexOuter: ["", "🗗"],
@@ -244,7 +295,7 @@ export const adjustLayer: BoardLayer = {
 //     ring: ["", "", null],
 //     pinky: ["", "", ""],
 //     pinkyOuter: [""],
-//     thumb: ["", "", ""],
+//     thumb: [null, "", "", ""],
 //   },
 // };
 
@@ -264,7 +315,7 @@ export const adjustLayer: BoardLayer = {
 //     middle: [null, "Š", "SHFT"],
 //     index: [null, "Ž", "WIN"],
 //     indexOuter: [null, null],
-//     thumb: [null, null, null],
+//     thumb: [null, null, null, null],
 //   },
 //   right: {
 //     indexOuter: ["Ú", "Č"],
@@ -273,7 +324,7 @@ export const adjustLayer: BoardLayer = {
 //     ring: ["Ň", "Í", getShiftedEmojiKey("🤢", "🤮")],
 //     pinky: ["Ť", "Ý", getShiftedEmojiKey("🤨", "👍")],
 //     pinkyOuter: ["Ó"],
-//     thumb: [
+//     thumb: [null, 
 //       getShiftedEmojiKey("😭", "🙁"),
 //       getShiftedEmojiKey("😅", "😁"),
 //       getShiftedEmojiKey("😂", "🙂"),
@@ -290,7 +341,7 @@ export const adjustLayer: BoardLayer = {
 //     middle: ["8", "2", "5"],
 //     index: ["9", "3", "6"],
 //     indexOuter: [">", "!"],
-//     thumb: [".", "=", ","],
+//     thumb: [null, ".", "=", ","],
 //   },
 //   right: {
 //     indexOuter: [null, null],
@@ -299,7 +350,7 @@ export const adjustLayer: BoardLayer = {
 //     ring: [null, "*", "CTRL"],
 //     pinky: [null, "/", "ALT"],
 //     pinkyOuter: ["🔒"],
-//     thumb: [null, null, null],
+//     thumb: [null, null, null, null],
 //   },
 // };
 
@@ -311,7 +362,7 @@ export const adjustLayer: BoardLayer = {
 //     middle: ["'", '"', "`"],
 //     index: [["$", "€"], "&", "#"],
 //     indexOuter: ["~", "\\"],
-//     thumb: ["]", ":", "}"],
+//     thumb: [null, "]", ":", "}"],
 //   },
 //   right: {
 //     indexOuter: [null, null],
@@ -320,7 +371,7 @@ export const adjustLayer: BoardLayer = {
 //     ring: [null, "_", "CTRL"],
 //     pinky: [null, ";", "ALT"],
 //     pinkyOuter: ["🔒"],
-//     thumb: [null, null, null],
+//     thumb: [null, null, null, null],
 //   },
 // };
 
@@ -332,7 +383,7 @@ export const adjustLayer: BoardLayer = {
 //     middle: ["F11", "F7", "F3"],
 //     index: ["F12", "F8", "F4"],
 //     indexOuter: ["SCR↑", "SCR↓"],
-//     thumb: ["🐭CNST0", "🐭 LEFT", "🐭RIGHT"],
+//     thumb: [null, "🐭CNST0", "🐭 LEFT", "🐭RIGHT"],
 //   },
 //   right: {
 //     indexOuter: [null, null],
@@ -341,6 +392,6 @@ export const adjustLayer: BoardLayer = {
 //     ring: [null, "🐭▲", "CTRL"],
 //     pinky: [null, "🐭⯈", "ALT"],
 //     pinkyOuter: ["🔒"],
-//     thumb: [null, null, null],
+//     thumb: [null, null, null, null],
 //   },
 // };

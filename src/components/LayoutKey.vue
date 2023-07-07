@@ -6,6 +6,8 @@ import LabelRow from "./LayoutKeyLabelRow.vue";
 interface KeyProps {
   label: KeyLabel;
   home?: boolean;
+  size?: number;
+  height?: number;
 }
 
 const props = defineProps<KeyProps>();
@@ -20,12 +22,14 @@ const rows = computed(() => {
   }
 });
 
-const keySize = 55;
+const keySize = props.size || 48;
+const keyHeight = props.height || keySize;
 const keyStyle = computed(() => {
-  const size = `${keySize}px`;
+  const width = `${keySize}px`;
+  const height = `${keyHeight}px`;
   return {
-    width: size,
-    height: size,
+    width: width,
+    height: height,
   };
 });
 </script>
@@ -57,5 +61,9 @@ $border-col: rgb(83, 83, 83);
   $accent-col: rgb(159, 190, 218);
   background-color: $accent-col;
   border-color: rgb(72, 66, 62);
+}
+
+.sideSwitch {
+  height: 50%;
 }
 </style>

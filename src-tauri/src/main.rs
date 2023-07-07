@@ -18,7 +18,6 @@ use tauri::SystemTrayEvent;
 use tauri::SystemTrayMenu;
 use tauri::SystemTrayMenuItem;
 
-
 const QUIT_ID: &str = "quit";
 const TOGGLE_ID: &str = "toggle";
 const LAYER_EV: &str = "layer";
@@ -40,7 +39,7 @@ enum BoardEvent {
     CapsWord(bool),
     CapsLock(bool),
     Shift(bool),
-    Keymap(u8)
+    Keymap(u8),
 }
 
 fn main() {
@@ -174,7 +173,8 @@ fn run_hid_loop(sender: Sender<BoardEvent>) {
         loop {
             match hid_device.read(&mut buff) {
                 Ok(_) => {
-                    println!("{:?}", buff);
+                    // println!("{:?}", buff);
+
                     let ev_type = buff[0];
                     let ev_val: u8 = buff[1];
                     match ev_type {
@@ -196,3 +196,7 @@ fn run_hid_loop(sender: Sender<BoardEvent>) {
         sender.send(BoardEvent::Connection(false)).unwrap();
     }
 }
+// fn zero_fill(vec: Vec<u8>) -> Vec<u8> {
+//     let zero: Vec<u8> = vec![0x00];
+//     [zero, vec].concat()
+// }

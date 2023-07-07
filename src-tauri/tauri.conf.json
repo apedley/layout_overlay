@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "layout_mockup",
+    "productName": "layout-overlay",
     "version": "0.1.0"
   },
   "tauri": {
@@ -58,8 +58,8 @@
     "windows": [
       {
         "fullscreen": false,
-        "width": 800,
-        "height": 330,
+        "width": 720,
+        "height": 420,
         "x": 1930,
         "y": 770,
         "resizable": false,

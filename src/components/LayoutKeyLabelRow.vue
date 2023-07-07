@@ -22,13 +22,13 @@ const labelText = computed(() => {
 });
 
 const labelStyle = computed(() => {
-  let size = props.rowCount > 1 || labelText.value.length > 2 ? 20 : 30;
+  let size = props.rowCount > 1 || labelText.value.length > 2 ? 15 : 26;
   if (labelText.value.length >= 8) {
-    size = 9;
+    size = 6;
   } else if (labelText.value.length >= 6) {
-    size = 12;
+    size = 10;
   } else if (labelText.value.length >= 4) {
-    size = 14;
+    size = 12;
   }
 
   const st = {
