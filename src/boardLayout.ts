@@ -45,6 +45,7 @@ export enum Layer {
   raise = "🠅",
   adjust = "ADJ",
   numpad = "NUM",
+  mouse = "MOUSE",
   // alpha = "ALPHA",
   // nav = "NAV",
   // num = "NUM",
@@ -64,10 +65,10 @@ export const baseLayer: BoardLayer = {
     thumb: [
       ["Mute", "Vol"],
       Layer.lower,
-      "Ctrl",
       "Space",
+      "Ctrl"
     ],
-    sideSwitch: ["DPI-", "Scroll", "DPI+"]
+    sideSwitch: ["Prev", "Play", "Next"]
   },
   
     //         {
@@ -82,7 +83,7 @@ export const baseLayer: BoardLayer = {
   right: {
     indexOuter: ["Y", "H", "N"],
     index: ["U", ["J", "Ctrl"], "M"],
-    ring: ["I", ["K", "Shift"],
+    middle: ["I", ["K", "Shift"],
       {
         label: ",",
         style: {
@@ -91,7 +92,7 @@ export const baseLayer: BoardLayer = {
         },
       }, 
     ],
-    middle: ["O", ["L", "Alt"],
+    ring: ["O", ["L", "Alt"],
       {
         label: ".",
         style: {
@@ -109,61 +110,62 @@ export const baseLayer: BoardLayer = {
         transform: "translateY(10px)",
       },
     }, 
-    "Ctrl"],
+    "Shift"],
     thumb: [
-      "Enter",
       "Alt",
+      "Enter",
       Layer.raise,
       ["Mute", "Alt Tab"],
     ],
-    sideSwitch: ["DPI-", "Point", "DPI+"]
+    // sideSwitch: ["DPI-", "Point", "DPI+"]
+    sideSwitch: ["Mo1", "Mo2", "Mo3"]
   },
 };
 
 export const lowerLayer: BoardLayer = {
   left: {
     pinkyOuter: ["~", "Updir", null],
-    pinky: ["!", "LEFT", null],
-    ring: ["@", "DOWN", null],
-    middle: ["#", " UP ", null],
-    index: ["$", "RIGHT", null],
-    indexOuter: ["%", "Updir", null],
-    thumb: [null, null, null, null],
+    pinky: ["1", "LEFT", "Home"],
+    ring: ["2", "DOWN", "PgDn"],
+    middle: ["3", " UP ", "PgUp"],
+    index: ["4", "RIGHT", "End"],
+    indexOuter: ["5", "Word", null],
+    thumb: [["Boot", "Scroll"], null, null, null],
 
     sideSwitch: ["Mode-", "RGB", "Mode+"]
   },
   right: {
-    indexOuter: ["^", null, null],
-    index: ["&", "-", null],
-    middle: ["*", "=", null],
-    ring: ["(", "[", null],
-    pinky: [")", "]", "\\"],
-    pinkyOuter: ["-", "=", null],
-    thumb: [null, null, null, null],
-
-    sideSwitch: ["Mode-", "RGB", "Mode+"]
+    indexOuter: ["6", null, "Home"],
+    index: ["7", "-", "PgDn"],
+    middle: ["8", "=", "PgUp"],
+    ring: ["9", "[", "End"],
+    pinky: ["0", "]", null],
+    pinkyOuter: ["DEL", "=", "\\"],
+    thumb: [null, null, null, ["Boot", "Scroll"]],
+    sideSwitch: ["DPI-", "Point", "DPI+"]
+    
   },
 };
 export const raiseLayer: BoardLayer = {
   left: {
-    pinkyOuter: ["~", null, null],
-    pinky: ["1", null, "CAPS"],
-    ring: ["2", null, "_"],
-    middle: ["3", null, "+"],
-    index: ["4", null, "{"],
+    pinkyOuter: ["F11", null, null],
+    pinky: ["F1", null, "CAPS"],
+    ring: ["F2", null, "_"],
+    middle: ["F3", null, "+"],
+    index: ["F4", null, "{"],
     indexOuter: ["5", null, "}"],
-    thumb: [null, null, null, null],
+    thumb: [["Boot", "Zoom"], null, null, null],
 
     sideSwitch: ["Mo1", "Mo3", "Mo2"]
   },
   right: {
-    indexOuter: ["6", null, null],
-    index: ["7", null, null],
-    middle: ["8", null, null],
-    ring: ["9", "(", "|"],
-    pinky: ["0", ")", "\""],
-    pinkyOuter: ["Del", "=", "Shh"],
-    thumb: [null, null, null, null],
+    indexOuter: ["F6", null, null],
+    index: ["F7", null, null],
+    middle: ["F8", null, null],
+    ring: ["F9", "(", "|"],
+    pinky: ["F0", ")", "\""],
+    pinkyOuter: ["F12", "=", "Shh"],
+    thumb: [null, null, null, ["Boot", "Zoom"]],
 
     sideSwitch: ["Mo1", "Mo3", "Mo2"]
   },
@@ -190,6 +192,54 @@ export const adjustLayer: BoardLayer = {
     thumb: [null, null, null, null],
 
     sideSwitch: ["Mo1", "Mo3", "Mo2"]
+  },
+};
+export const numpadLayer: BoardLayer = {
+  left: {
+    pinkyOuter: [null, null, null],
+    pinky: [null, null, null],
+    ring: [null, null, null],
+    middle: [null, null, null],
+    index: [null, null, null],
+    indexOuter: [null, null, null],
+    thumb: [null, null, null, null],
+
+    sideSwitch: [null, null, null]
+  },
+  right: {
+    indexOuter: [null, null, null],
+    index: [null, null, null],
+    middle: [null, null, null],
+    ring: [null, null, null],
+    pinky: [null, null, null],
+    pinkyOuter: [null, null, null],
+    thumb: [null, null, null, null],
+
+    sideSwitch: [null, null, null]
+  },
+};
+export const mouseLayer: BoardLayer = {
+  left: {
+    pinkyOuter: [null, null, null],
+    pinky: [null, null, null],
+    ring: [null, null, null],
+    middle: [null, null, "Accel"],
+    index: [null, null, "Zoom"],
+    indexOuter: [null, null, "Snipe"],
+    thumb: [null, "Mo3", "Mo2", "Mo1"],
+
+    sideSwitch: [null, null, null]
+  },
+  right: {
+    indexOuter: [null, null, "Mo4"],
+    index: [null, null, "Mo5"],
+    middle: [null, null, null],
+    ring: [null, null, null],
+    pinky: [null, null, null],
+    pinkyOuter: [null, null, null],
+    thumb: ["Mo1", "Mo2", "Mo3", null],
+
+    sideSwitch: [null, null, null]
   },
 };
 // export const alphaLayer: BoardLayer = {

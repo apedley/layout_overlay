@@ -12,11 +12,13 @@ import {
   lowerLayer,
   raiseLayer,
   adjustLayer,
-  // numpadLayer,
+  numpadLayer,
+  mouseLayer
 } from "./boardLayout";
 import LayoutLayer from "./components/LayoutLayer.vue";
 import { onMounted, onUnmounted, Ref, ref } from "vue";
 import { listen, UnlistenFn } from "@tauri-apps/api/event";
+import { m } from "@tauri-apps/api/dialog-20ff401c";
 
 let layer: Ref<BoardLayer | null> = ref(baseLayer);
 let layerChangeCount = ref(0);
@@ -34,6 +36,8 @@ const layers = [
   lowerLayer,
   raiseLayer,
   adjustLayer,
+  numpadLayer,
+  mouseLayer,
 ];
 
 if ((window as any).__TAURI__) {
