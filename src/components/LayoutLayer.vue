@@ -194,6 +194,10 @@ const sideSwitchShift = "-translate-y-3";
         :class="`flex flex-col ${s.styleClass} ${sideSwitchShift}`"
       />
     </div>    
+
+  <div class="title">
+    <h1>{{ props.layer.title }}</h1>
+  </div>
   </div>
 </template>
 
@@ -202,4 +206,7 @@ const sideSwitchShift = "-translate-y-3";
   height: 75px;
 }
 
+.title h1 {
+  font-size: 1.5rem;
+}
 </style>

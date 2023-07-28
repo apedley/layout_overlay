@@ -25,6 +25,7 @@ const CAPS_WORD_EV: &str = "capsword";
 const CAPS_LOCK_EV: &str = "capslock";
 const KEYMAP_EV: &str = "keymap";
 const SHIFT_EV: &str = "shift";
+const LEADER_EV: &str = "leader";
 // const HID_VENDOR_ID: u16 = 0x3a3c;
 // const HID_PROD_ID: u16 = 0x0001;
 const HID_VENDOR_ID: u16 = 0xfefe;
@@ -40,6 +41,7 @@ enum BoardEvent {
     CapsLock(bool),
     Shift(bool),
     Keymap(u8),
+    Leader(bool)
 }
 
 fn main() {
@@ -104,6 +106,9 @@ fn main() {
                     }
                     BoardEvent::Keymap(active) => {
                         app_handle.emit_all(KEYMAP_EV, active).unwrap();
+                    }
+                    BoardEvent::Leader(active) => {
+                        app_handle.emit_all(LEADER_EV, active).unwrap();
                     }
                 };
             });
@@ -173,7 +178,7 @@ fn run_hid_loop(sender: Sender<BoardEvent>) {
         loop {
             match hid_device.read(&mut buff) {
                 Ok(_) => {
-                    // println!("{:?}", buff);
+                    println!("{:?}", buff);
 
                     let ev_type = buff[0];
                     let ev_val: u8 = buff[1];
@@ -183,6 +188,7 @@ fn run_hid_loop(sender: Sender<BoardEvent>) {
                         3 => sender.send(BoardEvent::CapsWord(ev_val != 0)).unwrap(),
                         4 => sender.send(BoardEvent::CapsLock(ev_val != 0)).unwrap(),
                         5 => sender.send(BoardEvent::Shift(ev_val != 0)).unwrap(),
+                        6 => sender.send(BoardEvent::Leader(ev_val != 0)).unwrap(),
                         _ => unimplemented!("Board event '{}' not implemended", ev_type),
                     };
                 }

@@ -18,9 +18,12 @@ import {
 import LayoutLayer from "./components/LayoutLayer.vue";
 import { onMounted, onUnmounted, Ref, ref } from "vue";
 import { listen, UnlistenFn } from "@tauri-apps/api/event";
+import LeaderList from "./components/LeaderList.vue";
 import { m } from "@tauri-apps/api/dialog-20ff401c";
 
 let layer: Ref<BoardLayer | null> = ref(baseLayer);
+let leader = ref(false);
+let shift = ref(false);
 let layerChangeCount = ref(0);
 
 const layers = [
@@ -48,6 +51,12 @@ if ((window as any).__TAURI__) {
       await listen<number>("layer", (ev) => {
         layer.value = layers[ev.payload];
         layerChangeCount.value++;
+      }),
+      await listen<boolean>("leader", (ev) => {
+        leader.value = ev.payload;
+      }),
+      await listen<boolean>("shift", (ev) => {
+        shift.value = ev.payload;
       })
     );
   });
@@ -67,6 +76,8 @@ if ((window as any).__TAURI__) {
       class="layout"
     />
   </div>
+  <LeaderList v-if="leader" class="leader"/>
+  
 </template>
 
 <style lang="scss" scoped>
@@ -79,5 +90,14 @@ if ((window as any).__TAURI__) {
   padding: 10px;
   border-radius: 3px;
   user-select: none;
+}
+.leader {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.7); 
 }
 </style>
