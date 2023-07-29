@@ -144,7 +144,7 @@ export const lowerLayer: BoardLayer = {
     ring: ["9", "-_", "F9"],
     pinky: ["0", "=+ ", "F10"],
     pinkyOuter: ["DEL", "\\|", "F12"],
-    thumb: [null, null, null, ["Boot", "Scroll"]],
+    thumb: [null, null, null, "Scroll"],
     sideSwitch: ["DPI-", "Point", "DPI+"]
     
   },
@@ -152,24 +152,24 @@ export const lowerLayer: BoardLayer = {
 export const raiseLayer: BoardLayer = {
   title: "Raise",
   left: {
-    pinkyOuter: ["F11", null, null],
+    pinkyOuter: ["F11", "Word", null],
     pinky: ["Home", "🠈", null],
     ring: ["🠉", "🠋", "_"],
     middle: ["End", "🠊", "+"],
-    index: ["Pg🠉", "Pg🠋", "{"],
+    index: ["Pg🠉🠋", "Pg🠋", "{"],
     indexOuter: [null, "Word", "}"],
-    thumb: [["Boot", "Zoom"], null, null, null],
+    thumb: ["DPI", null, null, null],
 
     sideSwitch: ["DPI-", "Snipe", "DPI+"]
   },
   right: {
-    indexOuter: ["Mo1", "Mo🠈", null],
-    index: ["Mo2", "Mo🠋", null],
+    indexOuter: ["Mo1", "Mo🠈", "Mo4"],
+    index: ["Mo2", "Mo🠋", "Mo5"],
     middle: ["MWh🠋", "Mo🠉", null],
-    ring: ["MWh🠉", "Mo🠊", "🠈"],
+    ring:   ["MWh🠉", "Mo🠊", "🠈"],
     pinky: [null, "🠉", "🠋"],
     pinkyOuter: [null, null, "🠊"],
-    thumb: [null, null, null, ["Boot", "Zoom"]],
+    thumb: [null, null, null, ["Boot", "DPI"]],
 
     sideSwitch: ["Mo1", "Mo3", "Mo2"]
   },
@@ -183,8 +183,8 @@ export const adjustLayer: BoardLayer = {
     middle: ["F3", "Hue+", "Hue-"],
     index: ["F4", "Sat+", "Sat-"],
     indexOuter: ["F5", "Val+", "Val-"],
-    thumb: [null, null, null, null],
-
+    thumb: ["Zoom", null, null, null],
+    
     sideSwitch: [null, null, null]
   },
   right: {
@@ -194,7 +194,7 @@ export const adjustLayer: BoardLayer = {
     ring: ["F9", null, null],
     pinky: ["F10", null, null],
     pinkyOuter: ["F12", null, null],
-    thumb: [null, null, null, null],
+    thumb: ["Zoom", null, null, null],
 
     sideSwitch: [null, null, null]
   },
@@ -233,19 +233,24 @@ export const mouseLayer: BoardLayer = {
     middle: [null, null, "Close"],
     index: [null, null, "TabC"],
     indexOuter: [null, "Zoom", "TabN"],
-    thumb: [null, null, null, null],
+    thumb: ["Pg🠉🠋", null, null, null],
 
     sideSwitch: [null, null, null]
   },
+  /*
+   ["Mo1", "Mo🠈", "Mo4"],
+    index: ["Mo2", "Mo🠋", "Mo5"],
+    middle: ["MWh🠋", "Mo🠉", null],
+    ring: ["MWh🠉", "Mo🠊", "🠈"],
+    */
   right: {
-    indexOuter: ["Mo1", "Snipe", "Mo4"],
-    index: ["Mo2", null, "Mo5"],
-    middle: [null, null, null],
-    ring: [null, null, null],
-    pinky: [null, null, null],
-    pinkyOuter: [null, null, null],
-    thumb: [null, null, null, null],
-
+    indexOuter: ["Mo1", "Mo🠈", "Mo4"],
+    index: ["Mo2", "Mo🠋", "Mo5"],
+    middle: ["MWh🠋", "Mo🠉", null],
+    ring:   ["MWh🠉", "Mo🠊", null],
+    pinky: ["Scr+", "Scr-", "DPI-"],
+    pinkyOuter: ["Snp+", "Snp-", "DPI+"],
+    thumb: [null, null, null, "Pg🠉🠋"],
     sideSwitch: [null, null, null]
   },
 };
