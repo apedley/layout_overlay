@@ -53,7 +53,7 @@ if ((window as any).__TAURI__) {
         layerChangeCount.value++;
       }),
       await listen<boolean>("leader", (ev) => {
-        leader.value = ev.payload;
+        // leader.value = ev.payload;
       }),
       await listen<boolean>("shift", (ev) => {
         shift.value = ev.payload;

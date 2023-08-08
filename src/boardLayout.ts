@@ -60,7 +60,7 @@ export const baseLayer: BoardLayer = {
   left: {
     pinkyOuter: ["Esc", "Tab", "Shift"],
     pinky: ["Q", ["A", "Gui"], ["Z", Layer.raise]],
-    ring: ["W", "S", "X"],
+    ring: ["W", ["S", "Alt"], "X"],
     middle: ["E", ["D", "Ctrl"], "C"],
     index: ["R", ["F", "Shift"], "V"],
     indexOuter: ["T", "G", "B"],
@@ -68,7 +68,7 @@ export const baseLayer: BoardLayer = {
       ["Mute", "Vol"],
       Layer.lower,
       "Space",
-      "Alt"
+      "Ctrl"
     ],
     sideSwitch: ["Prev", "Play", "Next"]
   },
@@ -85,7 +85,7 @@ export const baseLayer: BoardLayer = {
   right: {
     indexOuter: ["Y", "H", "N"],
     index: ["U", ["J", "Shift"], "M"],
-    middle: ["I", ["K", "Alt"],
+    middle: ["I", ["K", "Ctrl"],
       {
         label: ",",
         style: {
@@ -94,7 +94,7 @@ export const baseLayer: BoardLayer = {
         },
       }, 
     ],
-    ring: ["O", "L",
+    ring: ["O", ["L", "Alt"],
       {
         label: ".",
         style: {
@@ -105,19 +105,22 @@ export const baseLayer: BoardLayer = {
     ],
     pinky: ["P", [";", "Gui"], "/"],
     pinkyOuter: ["Bksp", 
-    {
-      label: "'",
-      style: {
-        fontSize: "2em",
-        transform: "translateY(10px)",
-      },
-    }, 
+    [
+      {
+        label: " ' ",
+        style: {
+          fontSize: "2em",
+          transform: "translateY(10px)",
+        },
+      }, 
+      Layer.lower
+    ], 
     "Shift"],
     thumb: [
-      "Ctrl",
+      "Alt",
       "Enter",
       Layer.raise,
-      ["Mute", "Alt Tab"],
+      ["Mute", "Scroll"],
     ],
     // sideSwitch: ["DPI-", "Point", "DPI+"]
     sideSwitch: ["Mo4", "Mo3", "Mo5"]
@@ -133,7 +136,7 @@ export const lowerLayer: BoardLayer = {
     middle: ["3", "[", "F3"],
     index: ["4", "(", "F4"],
     indexOuter: ["5", "{", "F5"],
-    thumb: [["Boot", "Scroll"], null, null, null],
+    thumb: [["Boot", "DPI"], null, null, null],
 
     sideSwitch: ["Mode-", "RGB", "Mode+"]
   },
@@ -144,7 +147,7 @@ export const lowerLayer: BoardLayer = {
     ring: ["9", "-_", "F9"],
     pinky: ["0", "=+ ", "F10"],
     pinkyOuter: ["DEL", "\\|", "F12"],
-    thumb: [null, null, null, "Scroll"],
+    thumb: [null, null, null, "Zoom"],
     sideSwitch: ["DPI-", "Point", "DPI+"]
     
   },
@@ -156,17 +159,17 @@ export const raiseLayer: BoardLayer = {
     pinky: ["Home", "🠈", null],
     ring: ["🠉", "🠋", "_"],
     middle: ["End", "🠊", "+"],
-    index: ["Pg🠉🠋", "Pg🠋", "{"],
+    index: ["PgUp", "PgDn", "{"],
     indexOuter: [null, "Word", "}"],
-    thumb: ["DPI", null, null, null],
+    thumb: ["C+tab", null, null, null],
 
     sideSwitch: ["DPI-", "Snipe", "DPI+"]
   },
-  right: {
-    indexOuter: ["Mo1", "Mo🠈", "Mo4"],
-    index: ["Mo2", "Mo🠋", "Mo5"],
-    middle: ["MWh🠋", "Mo🠉", null],
-    ring:   ["MWh🠉", "Mo🠊", "🠈"],
+  right: { 
+    indexOuter: ["Mo1", "", "Mo4"],
+    index: ["Mo2", "", "Mo5"],
+    middle: ["MWh🠋", "", null],
+    ring:   ["MWh🠉", "", "🠈"],
     pinky: [null, "🠉", "🠋"],
     pinkyOuter: [null, null, "🠊"],
     thumb: [null, null, null, ["Boot", "DPI"]],
@@ -183,7 +186,7 @@ export const adjustLayer: BoardLayer = {
     middle: ["F3", "Hue+", "Hue-"],
     index: ["F4", "Sat+", "Sat-"],
     indexOuter: ["F5", "Val+", "Val-"],
-    thumb: ["Zoom", null, null, null],
+    thumb: ["Scroll", null, null, null],
     
     sideSwitch: [null, null, null]
   },
@@ -194,7 +197,7 @@ export const adjustLayer: BoardLayer = {
     ring: ["F9", null, null],
     pinky: ["F10", null, null],
     pinkyOuter: ["F12", null, null],
-    thumb: ["Zoom", null, null, null],
+    thumb: [null, null, null, "RGB"],
 
     sideSwitch: [null, null, null]
   },
@@ -231,9 +234,9 @@ export const mouseLayer: BoardLayer = {
     pinky: [null, null, null],
     ring: [null, null, null],
     middle: [null, null, "Close"],
-    index: [null, null, "TabC"],
+    index: [null, null, "Prv\nTab"],
     indexOuter: [null, "Zoom", "TabN"],
-    thumb: ["Pg🠉🠋", null, null, null],
+    thumb: ["Zoom", null, null, null],
 
     sideSwitch: [null, null, null]
   },
@@ -244,13 +247,13 @@ export const mouseLayer: BoardLayer = {
     ring: ["MWh🠉", "Mo🠊", "🠈"],
     */
   right: {
-    indexOuter: ["Mo1", "Mo🠈", "Mo4"],
-    index: ["Mo2", "Mo🠋", "Mo5"],
-    middle: ["MWh🠋", "Mo🠉", null],
-    ring:   ["MWh🠉", "Mo🠊", null],
+    indexOuter: ["Mo1", "", "Mo4"],
+    index: ["Mo2", "", "Mo5"],
+    middle: ["MWh🠋", "", null],
+    ring:   ["MWh🠉", "", null],
     pinky: ["Scr+", "Scr-", "DPI-"],
     pinkyOuter: ["Snp+", "Snp-", "DPI+"],
-    thumb: [null, null, null, "Pg🠉🠋"],
+    thumb: [null, "Snipe", null, "CTab"],
     sideSwitch: [null, null, null]
   },
 };
