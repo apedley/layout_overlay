@@ -123,7 +123,7 @@ export const baseLayer: BoardLayer = {
       ["Mute", "Scroll"],
     ],
     // sideSwitch: ["DPI-", "Point", "DPI+"]
-    sideSwitch: ["Mo4", "Mo3", "Mo5"]
+    sideSwitch: ["Undo", "YRedo", "Redo"]
   },
 };
 
@@ -235,7 +235,7 @@ export const mouseLayer: BoardLayer = {
     ring: [null, null, null],
     middle: [null, null, "Close"],
     index: [null, null, "Prv\nTab"],
-    indexOuter: [null, "Zoom", "TabN"],
+    indexOuter: [null, "Snipe", "TabN"],
     thumb: ["Zoom", null, null, null],
 
     sideSwitch: [null, null, null]
@@ -247,8 +247,8 @@ export const mouseLayer: BoardLayer = {
     ring: ["MWh🠉", "Mo🠊", "🠈"],
     */
   right: {
-    indexOuter: ["Mo1", "", "Mo4"],
-    index: ["Mo2", "", "Mo5"],
+    indexOuter: ["Mo1", "Mo1", "Mo4"],
+    index: ["Mo2", "Mo2", "Mo5"],
     middle: ["MWh🠋", "", null],
     ring:   ["MWh🠉", "", null],
     pinky: ["Scr+", "Scr-", "DPI-"],
